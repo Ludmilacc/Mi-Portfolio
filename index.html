@@ -3,19 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio - Parte 1</title>
-    <!-- Google Fonts: Syne (ExtraBold) y Inter -->
+    <title>Portfolio - Bright & Vibrant</title>
+    
+    <!-- Tipografías: Plus Jakarta Sans (Google) + Cabinet Grotesk (Fontshare) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Syne:wght@800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --bg-color: #0a0a0a;
-            --accent-color: #ffffff;
-            --text-secondary: #888888;
-            --font-display: 'Syne', sans-serif;
-            --font-sans: 'Inter', sans-serif;
+            --bg-color: #ffffff;
+            --accent-green: #b7ff00; /* Verde Neón / Lima */
+            --violet-main: #5a189a;   /* Violeta con personalidad */
+            --violet-light: #f3e8ff;  /* Violeta muy sutil para la marquesina */
+            --text-dark: #1a1a1a;
+            --font-display: 'Cabinet Grotesk', sans-serif;
+            --font-sans: 'Plus Jakarta Sans', sans-serif;
             --transition-smooth: cubic-bezier(0.23, 1, 0.32, 1);
         }
 
@@ -23,39 +27,38 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            -webkit-tap-highlight-color: transparent; /* Elimina el recuadro azul al tocar en mobile */
+            -webkit-tap-highlight-color: transparent;
         }
 
         body {
             background-color: var(--bg-color);
-            color: var(--accent-color);
+            color: var(--text-dark);
             font-family: var(--font-sans);
             overflow-x: hidden;
-            line-height: 1.4;
+            line-height: 1.2;
         }
 
-        /* 1. MARQUESINA INFINITA (BACKGROUND) */
+        /* 1. MARQUESINA INFINITA (SUTIL VIOLETA) */
         .marquee-container {
             position: fixed;
-            top: 20%;
+            top: 15%;
             left: 0;
             width: 100vw;
             z-index: 1;
             pointer-events: none;
             user-select: none;
-            opacity: 0.15; /* Sutil detrás de todo */
         }
 
         .marquee-content {
             display: flex;
             white-space: nowrap;
             font-family: var(--font-display);
-            font-size: 18vw;
+            font-size: 22vw;
             text-transform: uppercase;
-            -webkit-text-stroke: 1px var(--accent-color);
-            color: transparent;
+            /* Usamos un color violeta muy claro y sutil */
+            color: var(--violet-light);
             will-change: transform;
-            animation: scroll-marquee 20s linear infinite;
+            animation: scroll-marquee 25s linear infinite;
         }
 
         @keyframes scroll-marquee {
@@ -68,96 +71,96 @@
             position: relative;
             z-index: 10;
             min-height: 100vh;
-            padding: 40px 24px;
+            padding: 60px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
         }
 
-        /* FOTO ASIMÉTRICA */
+        /* FOTO ASIMÉTRICA CON BORDE VIOLETA */
         .photo-container {
             position: relative;
-            width: 180px;
-            height: 220px;
-            margin-bottom: 40px;
-            background: #1a1a1a; /* Placeholder color */
-            /* Forma asimétrica orgánica */
-            border-radius: 40% 60% 70% 30% / 40% 50% 60% 40%;
+            width: 200px;
+            height: 240px;
+            margin-bottom: 30px;
+            background: var(--violet-light);
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
             overflow: hidden;
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: transform 0.4s var(--transition-smooth);
+            border: 3px solid var(--violet-main);
+            transition: all 0.4s var(--transition-smooth);
             will-change: transform;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
             
-            /* Animación de entrada */
             opacity: 0;
-            transform: translateY(30px) rotate(-5deg);
-            animation: hero-entry 1s var(--transition-smooth) forwards;
+            transform: translateY(40px) rotate(-8deg);
+            animation: hero-entry 1.2s var(--transition-smooth) forwards;
         }
 
         .photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Filtro opcional para que la foto combine con el estilo */
+            filter: grayscale(20%); 
         }
 
-        /* Efecto de presión (Mobile interaction) */
+        /* Interacción Táctil: Cambia a Verde Flúo al presionar */
         .photo-container:active {
-            transform: scale(0.92) rotate(5deg);
-            transition: transform 0.2s ease;
+            transform: scale(0.95) rotate(5deg);
+            border-color: var(--accent-green);
+            box-shadow: 0 0 30px rgba(183, 255, 0, 0.4);
         }
 
-        /* TEXTOS PRINCIPALES */
-        .hero-info {
-            max-width: 90%;
-        }
-
+        /* TEXTOS */
         .name {
             font-family: var(--font-display);
-            font-size: 3.5rem;
-            line-height: 0.9;
-            margin-bottom: 16px;
+            font-size: 3.8rem;
+            color: var(--violet-main);
+            line-height: 0.85;
+            margin-bottom: 20px;
             text-transform: uppercase;
-            letter-spacing: -2px;
+            letter-spacing: -3px;
             
             opacity: 0;
             transform: translateY(30px);
-            animation: hero-entry 1s var(--transition-smooth) 0.2s forwards;
+            animation: hero-entry 1s var(--transition-smooth) 0.3s forwards;
         }
 
+        /* BADGE CON VERDE FLÚO */
         .title-badge {
             display: inline-block;
-            background: var(--accent-color);
-            color: var(--bg-color);
-            padding: 4px 12px;
-            font-weight: 800;
-            font-size: 0.8rem;
+            background: var(--accent-green);
+            color: var(--violet-main);
+            padding: 6px 12px;
+            font-weight: 700;
+            font-size: 0.85rem;
             text-transform: uppercase;
-            margin-bottom: 24px;
+            margin-bottom: 20px;
+            border-radius: 4px;
             
             opacity: 0;
             transform: translateY(20px);
-            animation: hero-entry 1s var(--transition-smooth) 0.4s forwards;
+            animation: hero-entry 1s var(--transition-smooth) 0.5s forwards;
         }
 
         .bio {
-            font-size: 1.1rem;
-            color: var(--text-secondary);
-            font-weight: 300;
-            max-width: 300px;
+            font-size: 1.15rem;
+            color: var(--text-dark);
+            max-width: 320px;
+            font-weight: 400;
             
             opacity: 0;
             transform: translateY(20px);
-            animation: hero-entry 1s var(--transition-smooth) 0.6s forwards;
+            animation: hero-entry 1s var(--transition-smooth) 0.7s forwards;
         }
 
+        /* Highlight de palabras importantes */
         .bio span {
-            color: var(--accent-color);
-            font-weight: 400;
+            background-color: var(--accent-green);
+            padding: 0 4px;
+            font-weight: 700;
         }
 
-        /* ANIMACIÓN DE ENTRADA GENERAL */
+        /* ANIMACIÓN DE ENTRADA */
         @keyframes hero-entry {
             to {
                 opacity: 1;
@@ -165,15 +168,16 @@
             }
         }
 
-        /* Estilización para que la marquesina tenga 2 bloques y el loop sea infinito */
-        .marquee-content span::after {
-            content: "CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR • ";
+        /* Responsive extra para pantallas muy pequeñas */
+        @media (max-width: 360px) {
+            .name { font-size: 3.2rem; }
+            .photo-container { width: 170px; height: 210px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Marquesina de Fondo -->
+    <!-- Marquesina de Fondo Sutil -->
     <div class="marquee-container">
         <div class="marquee-content">
             <span>CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;</span>
@@ -181,20 +185,19 @@
         </div>
     </div>
 
-    <!-- Sección Principal -->
+    <!-- Hero Section -->
     <section class="hero">
         
-        <!-- Contenedor de Foto Asimétrico -->
         <div class="photo-container">
-            <!-- Reemplazá este placeholder con tu foto real -->
-            <img src="https://via.placeholder.com/400x500/1a1a1a/ffffff?text=FOTO" alt="Tu Nombre">
+            <!-- Tu Foto Aquí -->
+            <img src="https://via.placeholder.com/400x500/f3e8ff/5a189a?text=FOTO" alt="Nombre">
         </div>
 
         <div class="hero-info">
             <span class="title-badge">Web UX/UI & Graphic Design</span>
             <h1 class="name">TU NOMBRE<br>APELLIDO</h1>
             <p class="bio">
-                <span>Estudiante de Diseño Gráfico</span> orientada a Web UX/UI y <span>Creadora de Contenido</span> digital con actitud proactiva.
+                <span>Estudiante de Diseño</span> orientada a Web UX/UI y <span>Creadora de Contenido</span> digital con actitud.
             </p>
         </div>
 
