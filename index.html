@@ -8,18 +8,18 @@
     <!-- Tipografías: Plus Jakarta Sans (Google) + Cabinet Grotesk (Fontshare) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&display=swap" rel="stylesheet">
     
     <style>
         :root {
             --white: #ffffff;
-            --violet-strong: #4d0099; /* Violeta con mucha fuerza */
-            --neon-green: #bdff00;    /* Verde Lima Neón */
-            --violet-soft: rgba(77, 0, 153, 0.05); /* Violeta pastel muy sutil */
+            --violet-main: #4d0099;     /* Violeta sólido y fuerte */
+            --neon-green: #bdff00;      /* Verde Flúo */
+            --violet-sutil: #f4f0fa;    /* Violeta clarito para marquesina */
             --font-display: 'Cabinet Grotesk', sans-serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
-            --curve: cubic-bezier(0.23, 1, 0.32, 1);
+            --transition: cubic-bezier(0.2, 1, 0.3, 1);
         }
 
         * {
@@ -31,197 +31,171 @@
 
         body {
             background-color: var(--white);
-            color: var(--violet-strong);
+            color: var(--violet-main);
             font-family: var(--font-sans);
             overflow-x: hidden;
-            /* Evita el rebote de scroll en iOS para una sensación más App */
-            position: fixed; 
-            width: 100%;
-            height: 100%;
+            line-height: 1.4;
         }
 
-        /* 1. MARQUESINA INFINITA (BACKGROUND LAYER) */
-        .marquee-bg {
-            position: absolute;
-            top: 15%;
+        /* 1. MARQUESINA DE FONDO (SUTIL) */
+        .marquee-container {
+            position: fixed;
+            top: 25%;
             left: 0;
-            width: 100%;
+            width: 100vw;
             z-index: 1;
             pointer-events: none;
-            user-select: none;
         }
 
-        .marquee-wrapper {
+        .marquee-content {
             display: flex;
             white-space: nowrap;
             font-family: var(--font-display);
-            font-size: 20vw;
+            font-size: 18vw;
             font-weight: 900;
-            text-transform: uppercase;
-            color: var(--violet-soft);
+            color: var(--violet-sutil);
             will-change: transform;
-            animation: moveMarquee 30s linear infinite;
+            animation: scroll 25s linear infinite;
         }
 
-        @keyframes moveMarquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+        @keyframes scroll {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
         }
 
-        /* 2. CONTENEDOR PRINCIPAL (MOBILE FIRST: 390x844px focus) */
-        .hero-section {
+        /* 2. ESTRUCTURA HERO */
+        .hero {
             position: relative;
-            z-index: 2;
-            height: 100vh;
-            padding: 40px 24px;
+            z-index: 10;
+            min-height: 100vh;
+            padding: 50px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
         }
 
-        /* FOTO ASIMÉTRICA E INTERACTIVA */
-        .photo-frame {
+        /* FOTO ASIMÉTRICA VIOLETA */
+        .photo-container {
             position: relative;
-            width: 180px;
-            height: 220px;
-            margin-bottom: 32px;
-            /* Forma orgánica asimétrica */
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            background: var(--neon-green);
-            border: 2px solid var(--violet-strong);
+            width: 190px;
+            height: 230px;
+            margin-bottom: 40px;
+            background: var(--violet-main);
+            border-radius: 40px 100px 40px 80px; /* Asimetría limpia */
             overflow: hidden;
+            transform: rotate(-3deg);
             will-change: transform;
-            transition: all 0.5s var(--curve);
+            transition: transform 0.4s var(--transition);
             
             /* Animación de entrada */
             opacity: 0;
-            transform: translateY(40px) rotate(-5deg);
-            animation: entryUp 1.2s var(--curve) forwards;
+            animation: fadeInStack 1s var(--transition) forwards;
         }
 
-        .photo-frame img {
+        .photo-container img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            mix-blend-mode: multiply; /* Efecto artístico con el fondo verde */
-            opacity: 0.9;
+            /* Podés usar un filtro para que combine mejor con el violeta */
+            filter: grayscale(100%) contrast(110%);
+            opacity: 0.8;
         }
 
-        /* Efecto al presionar (Mobile Touch) */
-        .photo-frame:active {
-            transform: scale(0.95) rotate(8deg);
-            border-radius: 50%;
-            border-color: var(--neon-green);
-            box-shadow: 0 0 40px rgba(189, 255, 0, 0.6);
+        /* Interacción Táctil */
+        .photo-container:active {
+            transform: scale(0.95) rotate(2deg);
         }
 
-        /* BLOQUE DE TEXTO */
-        .hero-content {
-            width: 100%;
-        }
-
-        .name-title {
+        /* NOMBRE LIMPIO Y SÓLIDO */
+        .name {
             font-family: var(--font-display);
-            font-size: 4.2rem;
+            font-size: 4.5rem;
+            color: var(--violet-main);
             line-height: 0.85;
             text-transform: uppercase;
-            letter-spacing: -3px;
-            margin-bottom: 20px;
+            letter-spacing: -4px;
+            margin-bottom: 30px;
             
             opacity: 0;
             transform: translateY(30px);
-            animation: entryUp 1s var(--curve) 0.3s forwards;
+            animation: fadeInStack 1s var(--transition) 0.3s forwards;
         }
 
-        .name-title span {
-            color: var(--neon-green);
-            -webkit-text-stroke: 1.5px var(--violet-strong);
-            display: block;
-        }
-
-        /* BADGE FLÚO */
-        .role-tag {
+        /* BLOQUES DE COLOR (RESALTADOS) */
+        .highlight-block {
             display: inline-block;
-            background: var(--neon-green);
-            color: var(--violet-strong);
-            padding: 6px 14px;
-            font-weight: 800;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            border: 1.5px solid var(--violet-strong);
-            border-radius: 50px;
-            margin-bottom: 20px;
-            
-            opacity: 0;
-            transform: translateY(20px);
-            animation: entryUp 1s var(--curve) 0.5s forwards;
-        }
-
-        /* BIO */
-        .bio-text {
-            font-size: 1.1rem;
-            line-height: 1.4;
-            max-width: 310px;
-            font-weight: 400;
-            color: var(--violet-strong);
-            
-            opacity: 0;
-            transform: translateY(20px);
-            animation: entryUp 1s var(--curve) 0.7s forwards;
-        }
-
-        .bio-text strong {
-            background: linear-gradient(0deg, var(--neon-green) 40%, transparent 40%);
+            background-color: var(--neon-green);
+            color: var(--violet-main);
+            padding: 4px 10px;
+            font-family: var(--font-sans);
             font-weight: 700;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 0;
+            margin: 2px 0;
+            /* Cuadrado limpio con puntas apenas redondeadas para que no sea tosco */
+            border-radius: 2px; 
         }
 
-        /* ANIMACIONES */
-        @keyframes entryUp {
+        /* BIOGRAFÍA */
+        .bio {
+            max-width: 330px;
+            font-size: 1.1rem;
+            font-weight: 400;
+            color: var(--violet-main);
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInStack 1s var(--transition) 0.6s forwards;
+        }
+
+        /* ANIMACIÓN DE ENTRADA ÚNICA */
+        @keyframes fadeInStack {
             to {
                 opacity: 1;
-                transform: translateY(0) rotate(0);
+                transform: translateY(0) rotate(var(--rot, -3deg)); /* Mantiene rotación en foto */
             }
         }
 
-        /* Ajustes para pantallas muy pequeñas */
-        @media (max-height: 700px) {
-            .name-title { font-size: 3.5rem; }
-            .photo-frame { width: 140px; height: 170px; }
+        /* Reset para que el nombre no herede la rotación de la foto en la animación */
+        .name, .bio { --rot: 0deg; }
+        .photo-container { --rot: -3deg; }
+
+        /* Mobile Optimization */
+        @media (max-width: 375px) {
+            .name { font-size: 3.8rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Capa 1: Marquesina de Proceso (Background) -->
-    <div class="marquee-bg">
-        <div class="marquee-wrapper">
-            CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;
-            CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;
+    <!-- Capa de Fondo: Marquesina -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;</span>
+            <span>CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;</span>
         </div>
     </div>
 
-    <!-- Capa 2: Contenido Hero -->
-    <section class="hero-section">
+    <!-- Contenido Principal -->
+    <section class="hero">
         
-        <!-- Foto con interacción táctil -->
-        <div class="photo-frame">
-            <!-- Tip: Para mejores resultados, usá una foto con fondo neutro -->
-            <img src="https://via.placeholder.com/400x600/bdff00/4d0099?text=LUDMILA" alt="Ludmila Coria">
+        <!-- Contenedor Foto -->
+        <div class="photo-container">
+            <!-- Reemplazar con tu imagen real -->
+            <img src="https://via.placeholder.com/400x500/4d0099/ffffff?text=LUDMILA" alt="Ludmila Coria">
         </div>
 
-        <div class="hero-content">
-            <span class="role-tag">Diseño Web UX/UI • Branding</span>
-            
-            <h1 class="name-title">
-                Ludmila<br>
-                <span>Coria</span>
-            </h1>
+        <!-- Nombre -->
+        <h1 class="name">Ludmila<br>Coria</h1>
 
-            <p class="bio-text">
-                Estudiante de <strong>Diseño Gráfico</strong>, enfocada en crear productos digitales con alma y <strong>Contenido</strong> con impacto visual.
-            </p>
-        </div>
+        <!-- Bio con bloques de color -->
+        <p class="bio">
+            Estudiante de Diseño Gráfico, dedicada al 
+            <span class="highlight-block">Diseño Web UX/UI</span>, 
+            <span class="highlight-block">Branding</span> y 
+            <span class="highlight-block">Creación de Contenido</span> digital con enfoque estratégico.
+        </p>
 
     </section>
 
