@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio - Parte 1</title>
+    <!-- Google Fonts: Syne (ExtraBold) y Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&family=Syne:wght@800&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #0a0a0a;
+            --accent-color: #ffffff;
+            --text-secondary: #888888;
+            --font-display: 'Syne', sans-serif;
+            --font-sans: 'Inter', sans-serif;
+            --transition-smooth: cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Elimina el recuadro azul al tocar en mobile */
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--accent-color);
+            font-family: var(--font-sans);
+            overflow-x: hidden;
+            line-height: 1.4;
+        }
+
+        /* 1. MARQUESINA INFINITA (BACKGROUND) */
+        .marquee-container {
+            position: fixed;
+            top: 20%;
+            left: 0;
+            width: 100vw;
+            z-index: 1;
+            pointer-events: none;
+            user-select: none;
+            opacity: 0.15; /* Sutil detrás de todo */
+        }
+
+        .marquee-content {
+            display: flex;
+            white-space: nowrap;
+            font-family: var(--font-display);
+            font-size: 18vw;
+            text-transform: uppercase;
+            -webkit-text-stroke: 1px var(--accent-color);
+            color: transparent;
+            will-change: transform;
+            animation: scroll-marquee 20s linear infinite;
+        }
+
+        @keyframes scroll-marquee {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); }
+        }
+
+        /* 2. ESTRUCTURA HERO */
+        .hero {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            padding: 40px 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+        }
+
+        /* FOTO ASIMÉTRICA */
+        .photo-container {
+            position: relative;
+            width: 180px;
+            height: 220px;
+            margin-bottom: 40px;
+            background: #1a1a1a; /* Placeholder color */
+            /* Forma asimétrica orgánica */
+            border-radius: 40% 60% 70% 30% / 40% 50% 60% 40%;
+            overflow: hidden;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.4s var(--transition-smooth);
+            will-change: transform;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+            
+            /* Animación de entrada */
+            opacity: 0;
+            transform: translateY(30px) rotate(-5deg);
+            animation: hero-entry 1s var(--transition-smooth) forwards;
+        }
+
+        .photo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Efecto de presión (Mobile interaction) */
+        .photo-container:active {
+            transform: scale(0.92) rotate(5deg);
+            transition: transform 0.2s ease;
+        }
+
+        /* TEXTOS PRINCIPALES */
+        .hero-info {
+            max-width: 90%;
+        }
+
+        .name {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            line-height: 0.9;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: -2px;
+            
+            opacity: 0;
+            transform: translateY(30px);
+            animation: hero-entry 1s var(--transition-smooth) 0.2s forwards;
+        }
+
+        .title-badge {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--bg-color);
+            padding: 4px 12px;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: hero-entry 1s var(--transition-smooth) 0.4s forwards;
+        }
+
+        .bio {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            font-weight: 300;
+            max-width: 300px;
+            
+            opacity: 0;
+            transform: translateY(20px);
+            animation: hero-entry 1s var(--transition-smooth) 0.6s forwards;
+        }
+
+        .bio span {
+            color: var(--accent-color);
+            font-weight: 400;
+        }
+
+        /* ANIMACIÓN DE ENTRADA GENERAL */
+        @keyframes hero-entry {
+            to {
+                opacity: 1;
+                transform: translateY(0) rotate(0);
+            }
+        }
+
+        /* Estilización para que la marquesina tenga 2 bloques y el loop sea infinito */
+        .marquee-content span::after {
+            content: "CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR • ";
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Marquesina de Fondo -->
+    <div class="marquee-container">
+        <div class="marquee-content">
+            <span>CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;</span>
+            <span>CREAR • INVESTIGAR • PROBAR • ENSUCIARSE • VIBRAR •&nbsp;</span>
+        </div>
+    </div>
+
+    <!-- Sección Principal -->
+    <section class="hero">
+        
+        <!-- Contenedor de Foto Asimétrico -->
+        <div class="photo-container">
+            <!-- Reemplazá este placeholder con tu foto real -->
+            <img src="https://via.placeholder.com/400x500/1a1a1a/ffffff?text=FOTO" alt="Tu Nombre">
+        </div>
+
+        <div class="hero-info">
+            <span class="title-badge">Web UX/UI & Graphic Design</span>
+            <h1 class="name">TU NOMBRE<br>APELLIDO</h1>
+            <p class="bio">
+                <span>Estudiante de Diseño Gráfico</span> orientada a Web UX/UI y <span>Creadora de Contenido</span> digital con actitud proactiva.
+            </p>
+        </div>
+
+    </section>
+
+</body>
+</html>
