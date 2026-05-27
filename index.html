@@ -14,9 +14,9 @@
     <style>
         :root {
             --white: #ffffff;
-            --violet-main: #4d0099;     /* Violeta sólido y profesional */
-            --neon-green: #bdff00;      /* Verde Flúo / Lima */
-            --violet-marquee: rgba(77, 0, 153, 0.04); /* Violeta ultra sutil para fondo */
+            --violet-main: #4d0099;
+            --neon-green: #bdff00;
+            --violet-marquee: rgba(77, 0, 153, 0.04);
             --font-display: 'Cabinet Grotesk', sans-serif;
             --font-sans: 'Plus Jakarta Sans', sans-serif;
             --transition-smooth: cubic-bezier(0.2, 1, 0.3, 1);
@@ -35,9 +35,11 @@
             font-family: var(--font-sans);
             overflow-x: hidden;
             line-height: 1.3;
+            /* Altura extra para probar el scroll y ver el menú */
+            min-height: 200vh; 
         }
 
-        /* 1. MARQUESINA DE FONDO PROFESIONAL */
+        /* 1. MARQUESINA DE FONDO */
         .marquee-bg {
             position: fixed;
             top: 20%;
@@ -45,18 +47,16 @@
             width: 100vw;
             z-index: 1;
             pointer-events: none;
-            user-select: none;
         }
 
         .marquee-track {
             display: flex;
             white-space: nowrap;
             font-family: var(--font-display);
-            font-size: 16vw; /* Tamaño gigante pero sutil */
+            font-size: 16vw;
             font-weight: 900;
             color: var(--violet-marquee);
-            will-change: transform;
-            animation: marquee-scroll 20s linear infinite;
+            animation: marquee-scroll 25s linear infinite;
         }
 
         @keyframes marquee-scroll {
@@ -64,18 +64,17 @@
             to { transform: translateX(-50%); }
         }
 
-        /* 2. CONTENEDOR HERO */
+        /* 2. SECCIÓN HERO */
         .hero {
             position: relative;
             z-index: 10;
-            min-height: 100vh;
-            padding: 60px 24px;
+            height: 100vh;
+            padding: 40px 24px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* FOTO ASIMÉTRICA */
         .photo-box {
             position: relative;
             width: 180px;
@@ -85,10 +84,7 @@
             border-radius: 40px 100px 30px 80px;
             overflow: hidden;
             transform: rotate(-4deg);
-            will-change: transform;
             transition: transform 0.4s var(--transition-smooth);
-            
-            /* Animación de entrada */
             opacity: 0;
             animation: entryEffect 1.2s var(--transition-smooth) forwards;
         }
@@ -101,12 +97,10 @@
             opacity: 0.85;
         }
 
-        /* Interacción Táctil (Feedback Mobile) */
         .photo-box:active {
             transform: scale(0.94) rotate(2deg);
         }
 
-        /* TÍTULO - NOMBRE LIMPIO */
         .hero-name {
             font-family: var(--font-display);
             font-size: 4.8rem;
@@ -115,13 +109,11 @@
             text-transform: uppercase;
             letter-spacing: -4px;
             margin-bottom: 32px;
-            
             opacity: 0;
             transform: translateY(40px);
             animation: entryEffect 1s var(--transition-smooth) 0.3s forwards;
         }
 
-        /* BLOQUES DE COLOR (HIGHLIGHTS) */
         .tag-block {
             display: inline-block;
             background-color: var(--neon-green);
@@ -130,44 +122,78 @@
             font-weight: 700;
             font-size: 0.95rem;
             text-transform: uppercase;
-            border-radius: 2px; /* Cuadrado limpio */
+            border-radius: 2px;
             margin: 2px 0;
         }
 
-        /* BIOGRAFÍA */
         .hero-bio {
             max-width: 320px;
             font-size: 1.1rem;
-            font-weight: 400;
-            color: var(--violet-main);
-            
             opacity: 0;
             transform: translateY(30px);
             animation: entryEffect 1s var(--transition-smooth) 0.6s forwards;
         }
 
-        /* ANIMACIÓN DE ENTRADA GENERAL */
         @keyframes entryEffect {
-            to {
-                opacity: 1;
-                transform: translateY(0) rotate(var(--rot, -4deg));
-            }
+            to { opacity: 1; transform: translateY(0) rotate(var(--rot, -4deg)); }
         }
-
-        /* Reset de rotación para textos */
         .hero-name, .hero-bio { --rot: 0deg; }
         .photo-box { --rot: -4deg; }
 
-        /* Ajustes para pantallas pequeñas (iPhone SE / etc) */
+        /* 3. MENÚ FLOTANTE (FLOATING DOCK) */
+        .floating-nav {
+            position: fixed;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px); /* Oculto por defecto abajo */
+            z-index: 100;
+            background-color: var(--violet-main);
+            padding: 12px 24px;
+            border-radius: 100px;
+            display: flex;
+            gap: 20px;
+            box-shadow: 0 15px 35px rgba(77, 0, 153, 0.3);
+            opacity: 0;
+            transition: transform 0.6s var(--transition-smooth), opacity 0.4s ease;
+            pointer-events: none; /* No clickable mientras esté oculto */
+        }
+
+        /* Clase activada por JS al hacer scroll */
+        .floating-nav.is-visible {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .nav-item {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:active {
+            color: var(--neon-green); /* Feedback táctil al tocar el link */
+        }
+
+        /* Divider entre ítems */
+        .nav-item:not(:last-child)::after {
+            content: '•';
+            margin-left: 20px;
+            color: rgba(255, 255, 255, 0.2);
+        }
+
         @media (max-width: 375px) {
             .hero-name { font-size: 4rem; }
-            .photo-box { width: 160px; height: 200px; }
         }
     </style>
 </head>
 <body>
 
-    <!-- Marquesina de Fondo Sutil -->
+    <!-- Marquesina -->
     <div class="marquee-bg">
         <div class="marquee-track">
             <span>CREATIVA DIGITAL • LUDMILA CORIA •&nbsp;</span>
@@ -177,30 +203,42 @@
         </div>
     </div>
 
-    <!-- Sección Hero -->
+    <!-- Hero Section -->
     <section class="hero">
-        
-        <!-- Foto Interactiva -->
         <div class="photo-box">
-            <!-- Reemplazar con tu foto real -->
             <img src="https://via.placeholder.com/400x500/4d0099/ffffff?text=LUDMILA" alt="Ludmila Coria">
         </div>
 
-        <!-- Nombre Principal -->
-        <h1 class="hero-name">
-            Ludmila<br>
-            Coria
-        </h1>
+        <h1 class="hero-name">Ludmila<br>Coria</h1>
 
-        <!-- Bio con bloques de color -->
         <p class="hero-bio">
             Estudiante de Diseño Gráfico, dedicada al 
             <span class="tag-block">Diseño Web UX/UI</span>, 
             <span class="tag-block">Branding</span> y 
             <span class="tag-block">Creación de Contenido</span> digital.
         </p>
-
     </section>
+
+    <!-- Menú Flotante Interactivo -->
+    <nav class="floating-nav" id="main-nav">
+        <a href="#trabajos" class="nav-item">Trabajos</a>
+        <a href="#info" class="nav-item">Info</a>
+        <a href="#contacto" class="nav-item">Contacto</a>
+    </nav>
+
+    <script>
+        // Lógica de Scroll para mostrar/ocultar el menú
+        const nav = document.getElementById('main-nav');
+        const scrollThreshold = 300; // Píxeles de scroll para que aparezca
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > scrollThreshold) {
+                nav.classList.add('is-visible');
+            } else {
+                nav.classList.remove('is-visible');
+            }
+        });
+    </script>
 
 </body>
 </html>
