@@ -115,19 +115,12 @@
             display: inline-block;
         }
 
-        /* 3. DISCIPLINAS (Mobile First) */
+        /* 3. DISCIPLINAS (Mobile First - 2 col alineadas) */
         .discipline-link {
             text-decoration: none;
             color: inherit;
             display: block;
             margin-bottom: 50px;
-        }
-
-        .discipline-grid {
-            display: flex;
-            flex-direction: row; /* En mobile ya era row pero lo reforzamos */
-            align-items: flex-start;
-            gap: 15px;
         }
 
         .pill-title {
@@ -142,6 +135,12 @@
             font-family: var(--font-title);
             font-size: 0.9rem;
             text-transform: uppercase;
+        }
+
+        .discipline-grid {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
         }
 
         .col-left { flex: 0 0 70%; font-size: 1rem; line-height: 1.5; }
@@ -169,72 +168,50 @@
         }
 
         /* =============================================
-           REGLAS PARA ESCRITORIO (DESKTOP)
+           AJUSTES EXCLUSIVOS DESKTOP (1024px+)
            ============================================= */
         @media (min-width: 1024px) {
             .container {
-                padding: 80px 100px; /* Más aire en los bordes */
+                padding: 80px 100px;
             }
 
-            .main-name {
-                font-size: 7rem;
-                max-width: 800px;
-            }
+            .main-name { font-size: 7rem; }
+            .photo-blob { width: 320px; height: 380px; }
+            .bio { font-size: 1.4rem; max-width: 600px; }
 
-            .photo-blob {
-                width: 350px;
-                height: 400px;
-            }
-
-            .bio {
-                font-size: 1.5rem;
-                max-width: 600px;
-            }
-
-            /* LÓGICA DE EXTREMOS OPUESTOS */
-            .discipline-link {
-                width: 100%;
-                margin-bottom: 120px;
-            }
-
+            /* Grid de Disciplinas: Extremos Opuestos y Foto Chica */
             .discipline-grid {
                 width: 100%;
-                display: flex;
-                flex-direction: row;
-                justify-content: space-between; /* Empuja los elementos a los bordes */
-                align-items: center; /* Alineación vertical al centro para elegancia */
-                gap: 0; /* Quitamos el gap fijo para que space-between mande */
+                justify-content: space-between; /* Texto a la izq, Foto a la der */
+                align-items: center;
+                gap: 0;
             }
 
             .col-left {
-                flex: 0 0 45vw; /* Ocupa el 45% del ancho de pantalla */
+                flex: 0 0 45vw; /* Texto contenido al 45% */
                 max-width: 45vw;
-                font-size: 1.3rem;
-                line-height: 1.6;
+                font-size: 1.25rem;
             }
 
             .col-right {
-                flex: 0 0 35vw; /* La foto ocupa el 35% del ancho */
-                max-width: 35vw;
-                flex-direction: row; /* Ponemos la foto y la flecha una al lado de la otra */
+                flex: 0 0 25vw; /* FOTO ACHICADA AL 25% */
+                max-width: 25vw;
+                flex-direction: row; /* Foto y flecha en línea */
                 justify-content: flex-end;
                 align-items: center;
                 gap: 30px;
             }
 
             .mini-photo {
-                width: 100%; /* Toma el ancho del contenedor 35vw */
-                height: auto;
-                aspect-ratio: 16/10; /* Un poco más apaisada para desktop */
+                width: 100%; 
+                aspect-ratio: 4/3; /* Formato más elegante para desktop */
                 border-radius: 20px;
             }
 
-            .pill-title span {
-                font-size: 1.2rem;
-            }
-
-            .arrow {
-                font-size: 4rem; /* Flecha más imponente */
+            .arrow { font-size: 3.5rem; }
+            
+            .discipline-link {
+                margin-bottom: 100px;
             }
         }
 
@@ -265,8 +242,9 @@
             </p>
         </header>
 
-        <!-- 3. Disciplinas -->
+        <!-- 3. Bloques de Disciplinas -->
         
+        <!-- BRANDING -->
         <a href="#branding" class="discipline-link">
             <div class="pill-title"><span>BRANDING</span></div>
             <div class="discipline-grid">
@@ -275,13 +253,14 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800" alt="Branding Work">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800" alt="Branding">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
+        <!-- PACKAGING -->
         <a href="#packaging" class="discipline-link">
             <div class="pill-title"><span>PACKAGING</span></div>
             <div class="discipline-grid">
@@ -290,13 +269,14 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800" alt="Packaging Work">
+                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800" alt="Packaging">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
+        <!-- WEB -->
         <a href="#web" class="discipline-link">
             <div class="pill-title"><span>DISEÑO WEB</span></div>
             <div class="discipline-grid">
@@ -305,13 +285,14 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800" alt="Web Design">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800" alt="Web">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
+        <!-- CONTENIDO -->
         <a href="#contenido" class="discipline-link">
             <div class="pill-title"><span>CONTENIDO PARA REDES</span></div>
             <div class="discipline-grid">
@@ -320,7 +301,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" alt="Social Media Work">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" alt="Contenido">
                     </div>
                     <div class="arrow">→</div>
                 </div>
