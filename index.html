@@ -34,7 +34,7 @@
             text-align: left;
         }
 
-        /* 1. TEXTURA DE FONDO (LOREM IPSUM MASIVO) */
+        /* 1. TEXTURA DE FONDO (LOREM IPSUM MASIVO) - SE MANTIENE 100% EN TODO DISPOSITIVO */
         .bg-texture-container {
             position: fixed;
             top: 0;
@@ -67,20 +67,16 @@
             animation: scroll-right 40s linear infinite;
         }
 
-        @keyframes scroll-left {
-            from { transform: translateX(0); }
-            to { transform: translateX(-50%); }
-        }
+        @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        @keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-        @keyframes scroll-right {
-            from { transform: translateX(-50%); }
-            to { transform: translateX(0); }
-        }
-
-        /* 2. COMPOSICIÓN INICIO */
+        /* 2. COMPOSICIÓN INICIO - MOBILE FIRST */
         .container {
             padding: 40px 20px;
-            max-width: 500px; /* Limite para mobile-first */
+            max-width: 500px;
+            width: 100%;
+            margin-left: 0; /* Asegura alineación a la izquierda */
+            position: relative;
         }
 
         .photo-blob {
@@ -94,11 +90,7 @@
             transition: all 0.5s ease;
         }
 
-        .photo-blob img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .photo-blob img { width: 100%; height: 100%; object-fit: cover; }
 
         .photo-blob:active {
             transform: scale(1.05) rotate(0deg);
@@ -128,7 +120,7 @@
             display: inline-block;
         }
 
-        /* 3. SECCIÓN DISCIPLINAS */
+        /* 3. SECCIÓN DISCIPLINAS - MOBILE FIRST */
         .discipline-link {
             text-decoration: none;
             color: inherit;
@@ -137,9 +129,7 @@
             transition: transform 0.3s ease;
         }
 
-        .discipline-link:active {
-            transform: scale(0.97);
-        }
+        .discipline-link:active { transform: scale(0.97); }
 
         .pill-title {
             display: inline-block;
@@ -162,20 +152,8 @@
             gap: 15px;
         }
 
-        .col-left {
-            flex: 0 0 70%;
-            font-size: 1rem;
-            line-height: 1.5;
-            font-weight: 400;
-        }
-
-        .col-right {
-            flex: 0 0 30%;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-        }
+        .col-left { flex: 0 0 70%; font-size: 1rem; line-height: 1.5; font-weight: 400; }
+        .col-right { flex: 0 0 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
         .mini-photo {
             width: 100%;
@@ -186,11 +164,7 @@
             border: 1px solid rgba(93, 38, 193, 0.1);
         }
 
-        .mini-photo img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
+        .mini-photo img { width: 100%; height: 100%; object-fit: cover; }
 
         .arrow {
             font-size: 2rem;
@@ -203,15 +177,59 @@
             50% { transform: translateX(10px); }
         }
 
-        /* Separador sutil entre bloques */
         .discipline-link::after {
-            content: '';
-            display: block;
-            width: 40px;
-            height: 1px;
-            background-color: var(--violeta);
-            margin-top: 30px;
-            opacity: 0.3;
+            content: ''; display: block; width: 40px; height: 1px;
+            background-color: var(--violeta); margin-top: 30px; opacity: 0.3;
+        }
+
+        /* =============================================
+           REGLAS PARA ESCRITORIO (DESKTOP) 
+           ============================================= */
+        @media (min-width: 768px) {
+            .container {
+                max-width: 850px; /* Límite de ancho editorial */
+                width: 65vw;      /* Ocupa el 65% del ancho de pantalla */
+                padding: 80px 60px;
+                margin-left: 0;   /* Mantiene la alineación a la izquierda */
+            }
+
+            .main-name {
+                font-size: 6rem; /* Nombre mucho más imponente */
+                margin-bottom: 40px;
+            }
+
+            .photo-blob {
+                width: 320px;   /* Foto más grande en desktop */
+                height: 380px;
+                margin-bottom: 50px;
+            }
+
+            .bio {
+                font-size: 1.4rem; /* Texto de bio más legible */
+                max-width: 80%;
+                margin-bottom: 100px;
+            }
+
+            /* Ajuste de columnas en disciplinas */
+            .discipline-grid {
+                gap: 40px; /* Más espacio entre texto y foto */
+            }
+
+            .col-left {
+                font-size: 1.2rem; /* Cuerpo de texto más cómodo */
+            }
+
+            .mini-photo {
+                max-width: 180px; /* Evita que la foto detalle crezca demasiado */
+            }
+
+            .pill-title span {
+                font-size: 1.1rem; /* Píldoras más claras */
+            }
+            
+            .discipline-link {
+                margin-bottom: 80px; /* Más aire entre secciones */
+            }
         }
 
     </style>
@@ -253,7 +271,6 @@
 
         <!-- 3. Disciplinas -->
         
-        <!-- BLOQUE 1: BRANDING -->
         <a href="#branding" class="discipline-link">
             <div class="pill-title"><span>BRANDING</span></div>
             <div class="discipline-grid">
@@ -262,14 +279,13 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=200" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=300" alt="Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
-        <!-- BLOQUE 2: PACKAGING -->
         <a href="#packaging" class="discipline-link">
             <div class="pill-title"><span>PACKAGING</span></div>
             <div class="discipline-grid">
@@ -278,14 +294,13 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=200" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=300" alt="Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
-        <!-- BLOQUE 3: DISEÑO WEB -->
         <a href="#web" class="discipline-link">
             <div class="pill-title"><span>DISEÑO WEB</span></div>
             <div class="discipline-grid">
@@ -294,14 +309,13 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=200" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=300" alt="Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
             </div>
         </a>
 
-        <!-- BLOQUE 4: CONTENIDO -->
         <a href="#contenido" class="discipline-link">
             <div class="pill-title"><span>CONTENIDO PARA REDES</span></div>
             <div class="discipline-grid">
@@ -310,7 +324,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=200" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=300" alt="Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
@@ -319,8 +333,7 @@
 
     </div>
 
-    <!-- Espacio final para scroll -->
-    <div style="height: 80px;"></div>
+    <div style="height: 100px;"></div>
 
 </body>
 </html>
