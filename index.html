@@ -3,21 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludmila Coria | Portfolio</title>
+    <title>Ludmila Coria | Portfolio Editorial</title>
     
     <!-- Tipografías -->
-    <link href="https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,900&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Grotesk:wght@800&display=swap" rel="stylesheet">
 
     <style>
         :root {
             --violeta: #5D26C1;
             --verde-fluo: #CCFF00;
             --blanco: #FFFFFF;
-            --font-main: 'Plus Jakarta Sans', sans-serif;
-            --font-title: 'Cabinet Grotesk', sans-serif;
+            --textura-color: rgba(93, 38, 193, 0.04);
+            --font-title: 'Space Grotesk', sans-serif;
+            --font-base: 'Plus Jakarta Sans', sans-serif;
         }
 
+        /* Reset y General */
         * {
             margin: 0;
             padding: 0;
@@ -27,226 +28,299 @@
 
         body {
             background-color: var(--blanco);
-            font-family: var(--font-main);
+            font-family: var(--font-base);
             color: var(--violeta);
             overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
+            text-align: left;
         }
 
-        /* --- MARQUESINA DE FONDO --- */
-        .marquee {
+        /* 1. TEXTURA DE FONDO (LOREM IPSUM MASIVO) */
+        .bg-texture-container {
             position: fixed;
-            top: 25%;
+            top: 0;
             left: 0;
-            width: 100%;
+            width: 100vw;
+            height: 100vh;
             z-index: -1;
-            opacity: 0.07; /* Ultra sutil */
+            overflow: hidden;
             pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+
+        .marquee-line {
+            font-family: var(--font-title);
+            font-size: 12vh;
             white-space: nowrap;
+            color: var(--textura-color);
+            line-height: 1;
             display: flex;
         }
 
         .marquee-content {
             display: inline-block;
-            font-family: var(--font-title);
-            font-weight: 900;
-            font-size: 15vh;
-            text-transform: uppercase;
-            animation: scroll 20s linear infinite;
+            animation: scroll-left 40s linear infinite;
         }
 
-        @keyframes scroll {
+        .reverse .marquee-content {
+            animation: scroll-right 40s linear infinite;
+        }
+
+        @keyframes scroll-left {
             from { transform: translateX(0); }
             to { transform: translateX(-50%); }
         }
 
-        /* --- COMPOSICIÓN INICIO --- */
-        .hero {
-            padding: 60px 25px 40px 25px;
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+        @keyframes scroll-right {
+            from { transform: translateX(-50%); }
+            to { transform: translateX(0); }
         }
 
-        /* Foto Irregular Orgánica */
-        .photo-wrapper {
-            width: 260px;
-            height: 300px;
-            background-color: #f0f0f0; /* Placeholder */
-            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; /* Forma orgánica */
+        /* 2. COMPOSICIÓN INICIO */
+        .container {
+            padding: 40px 20px;
+            max-width: 500px; /* Limite para mobile-first */
+        }
+
+        .photo-blob {
+            width: 240px;
+            height: 280px;
+            background-color: #eee;
+            border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+            margin-bottom: 30px;
             overflow: hidden;
-            transform: rotate(-5deg);
-            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            margin-bottom: 40px;
-            align-self: center;
+            transform: rotate(-3deg);
+            transition: all 0.5s ease;
         }
 
-        .photo-wrapper img {
+        .photo-blob img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transform: rotate(5deg) scale(1.1); /* Compensa la rotación del padre */
         }
 
-        .photo-wrapper:active {
-            transform: rotate(0deg) scale(1.1);
+        .photo-blob:active {
+            transform: scale(1.05) rotate(0deg);
             border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
         }
 
-        .name {
+        .main-name {
             font-family: var(--font-title);
-            font-size: 4rem;
-            font-weight: 900;
-            line-height: 0.85;
+            font-size: 3.5rem;
+            line-height: 0.9;
+            text-transform: uppercase;
+            margin-bottom: 20px;
             letter-spacing: -2px;
-            margin-bottom: 25px;
         }
 
         .bio {
-            font-size: 1.15rem;
+            font-size: 1.1rem;
             line-height: 1.4;
             font-weight: 500;
-            max-width: 90%;
+            margin-bottom: 60px;
         }
 
-        /* Destacados Verde Fluo */
-        .highlight {
+        .tag {
             background-color: var(--verde-fluo);
-            padding: 2px 6px;
-            display: inline-block;
-            line-height: 1;
-            border-radius: 2px;
+            padding: 0 5px;
             font-weight: 700;
+            display: inline-block;
         }
 
-        /* --- BLOQUE BRANDING (CONTINUIDAD) --- */
-        .branding-link {
+        /* 3. SECCIÓN DISCIPLINAS */
+        .discipline-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            padding: 80px 25px;
+            margin-bottom: 50px;
             transition: transform 0.3s ease;
         }
 
-        .branding-link:active {
-            transform: scale(0.98);
+        .discipline-link:active {
+            transform: scale(0.97);
         }
 
-        /* Píldora Calada */
         .pill-title {
             display: inline-block;
             border: 1.5px solid var(--violeta);
             border-radius: 50px;
-            padding: 10px 30px;
-            margin-bottom: 30px;
+            padding: 6px 20px;
+            margin-bottom: 20px;
         }
 
-        .pill-title h2 {
+        .pill-title span {
             font-family: var(--font-title);
-            font-size: 2rem;
-            font-weight: 800;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
         }
 
-        .philosophy {
-            font-size: 1.25rem;
-            line-height: 1.5;
-            margin-bottom: 40px;
-            font-weight: 500;
-        }
-
-        /* Footer del bloque: Foto detalle + Flecha */
-        .branding-footer {
+        .discipline-grid {
             display: flex;
+            align-items: flex-start;
+            gap: 15px;
+        }
+
+        .col-left {
+            flex: 0 0 70%;
+            font-size: 1rem;
+            line-height: 1.5;
+            font-weight: 400;
+        }
+
+        .col-right {
+            flex: 0 0 30%;
+            display: flex;
+            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 10px;
         }
 
-        .small-photo {
-            width: 120px;
-            height: 120px;
-            background-color: #eee;
-            border-radius: 20px;
-            transform: rotate(-8deg); /* Asimetría */
+        .mini-photo {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background-color: #f0f0f0;
+            border-radius: 15px;
             overflow: hidden;
-            flex-shrink: 0;
+            border: 1px solid rgba(93, 38, 193, 0.1);
         }
 
-        .small-photo img {
+        .mini-photo img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
 
-        .arrow-indicator {
-            font-size: 3rem;
+        .arrow {
+            font-size: 2rem;
             font-weight: 300;
-            animation: bounceHorizontal 1.5s infinite;
+            animation: bounceRight 1.5s infinite;
         }
 
-        @keyframes bounceHorizontal {
+        @keyframes bounceRight {
             0%, 100% { transform: translateX(0); }
-            50% { transform: translateX(15px); }
+            50% { transform: translateX(10px); }
         }
 
-        /* Ajustes Mobile Finos */
-        @media (max-width: 380px) {
-            .name { font-size: 3.2rem; }
-            .philosophy { font-size: 1.1rem; }
+        /* Separador sutil entre bloques */
+        .discipline-link::after {
+            content: '';
+            display: block;
+            width: 40px;
+            height: 1px;
+            background-color: var(--violeta);
+            margin-top: 30px;
+            opacity: 0.3;
         }
+
     </style>
 </head>
 <body>
 
-    <!-- Marquesina -->
-    <div class="marquee">
-        <div class="marquee-content">
-            CREATIVA DIGITAL • LUDMILA CORIA • CREATIVA DIGITAL • LUDMILA CORIA •
+    <!-- 1. Textura de Fondo -->
+    <div class="bg-texture-container">
+        <div class="marquee-line">
+            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
+        </div>
+        <div class="marquee-line reverse">
+            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
+        </div>
+        <div class="marquee-line">
+            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
+        </div>
+        <div class="marquee-line reverse">
+            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
+        </div>
+        <div class="marquee-line">
+            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
         </div>
     </div>
 
-    <!-- 1. Inicio -->
-    <header class="hero">
-        <div class="photo-wrapper">
-            <!-- Colocá tu foto aquí -->
-            <img src="https://via.placeholder.com/500x600/5D26C1/FFFFFF?text=FOTO+LUDMILA" alt="Ludmila Coria">
-        </div>
-
-        <h1 class="name">Ludmila<br>Coria</h1>
-
-        <p class="bio">
-            Estudiante de Diseño Gráfico, dedicada al 
-            <span class="highlight">Diseño Web</span>, 
-            <span class="highlight">Branding</span> y 
-            <span class="highlight">Creación de Contenido</span>.
-        </p>
-    </header>
-
-    <!-- 2. Bloque Branding -->
-    <a href="#branding" class="branding-link">
-        <section class="branding-content">
-            
-            <div class="pill-title">
-                <h2>BRANDING</h2>
+    <div class="container">
+        
+        <!-- 2. Inicio -->
+        <header>
+            <div class="photo-blob">
+                <img src="https://via.placeholder.com/400x500/5D26C1/FFFFFF?text=LUDMILA" alt="Ludmila Coria">
             </div>
-
-            <p class="philosophy">
-                No sé diseñar desde afuera. Para crear la identidad de una marca, necesito compenetrarme: investigar el producto, probarlo, testear su calidad y vibrar con el proyecto. Si no me ensucio las manos, el resultado no es real.
+            <h1 class="main-name">LUDMILA<br>CORIA</h1>
+            <p class="bio">
+                Estudiante de Diseño Gráfico, dedicada al <span class="tag">Diseño Web</span>, 
+                <span class="tag">Branding</span> y <span class="tag">Creación de Contenido</span> estratégico.
             </p>
+        </header>
 
-            <div class="branding-footer">
-                <div class="small-photo">
-                    <!-- Colocá un detalle de un logo o mockup aquí -->
-                    <img src="https://images.unsplash.com/photo-1626785774573-4b799315345d?auto=format&fit=crop&q=80&w=400" alt="Detalle Branding">
+        <!-- 3. Disciplinas -->
+        
+        <!-- BLOQUE 1: BRANDING -->
+        <a href="#branding" class="discipline-link">
+            <div class="pill-title"><span>BRANDING</span></div>
+            <div class="discipline-grid">
+                <div class="col-left">
+                    No sé diseñar desde afuera. Para crear la identidad de una marca necesito compenetrarme: investigar el producto, probarlo y vibrar con el proyecto. Si no me ensucio las manos, el resultado no es real.
                 </div>
-                <div class="arrow-indicator">→</div>
+                <div class="col-right">
+                    <div class="mini-photo">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=200" alt="Work">
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
             </div>
+        </a>
 
-        </section>
-    </a>
+        <!-- BLOQUE 2: PACKAGING -->
+        <a href="#packaging" class="discipline-link">
+            <div class="pill-title"><span>PACKAGING</span></div>
+            <div class="discipline-grid">
+                <div class="col-left">
+                    Me apasiona el diseño de empaques y productos tangibles. Creo objetos que la gente puede tocar y experimentar en el mundo real, fusionando estética con funcionalidad técnica.
+                </div>
+                <div class="col-right">
+                    <div class="mini-photo">
+                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=200" alt="Work">
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+        </a>
 
-    <!-- Espacio extra para scroll -->
-    <div style="height: 100px;"></div>
+        <!-- BLOQUE 3: DISEÑO WEB -->
+        <a href="#web" class="discipline-link">
+            <div class="pill-title"><span>DISEÑO WEB</span></div>
+            <div class="discipline-grid">
+                <div class="col-left">
+                    Enfoque estratégico UX/UI. Mi formación me permite diseñar interfaces pensadas para que navegar en el celular sea una experiencia fluida, cómoda y visualmente impactante.
+                </div>
+                <div class="col-right">
+                    <div class="mini-photo">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=200" alt="Work">
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+        </a>
+
+        <!-- BLOQUE 4: CONTENIDO -->
+        <a href="#contenido" class="discipline-link">
+            <div class="pill-title"><span>CONTENIDO PARA REDES</span></div>
+            <div class="discipline-grid">
+                <div class="col-left">
+                    Gracias a estudiar diseño tengo un criterio estético y estratégico real para redes sociales. No subo cosas por subir; cada pieza tiene una identidad y un objetivo claro.
+                </div>
+                <div class="col-right">
+                    <div class="mini-photo">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=200" alt="Work">
+                    </div>
+                    <div class="arrow">→</div>
+                </div>
+            </div>
+        </a>
+
+    </div>
+
+    <!-- Espacio final para scroll -->
+    <div style="height: 80px;"></div>
 
 </body>
 </html>
