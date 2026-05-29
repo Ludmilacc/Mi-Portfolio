@@ -77,7 +77,7 @@
             position: relative;
         }
 
-        /* Inicio (Mobile First) */
+        /* Inicio */
         .photo-blob {
             width: 240px;
             height: 280px;
@@ -100,7 +100,6 @@
             letter-spacing: -2px;
         }
 
-        /* BIO - Texto actualizado y regla anti-comas solas */
         .bio {
             font-size: 1.1rem;
             line-height: 1.6;
@@ -109,10 +108,7 @@
             max-width: 500px;
         }
 
-        .no-break {
-            white-space: nowrap;
-            display: inline-block;
-        }
+        .no-break { white-space: nowrap; display: inline-block; }
 
         .tag {
             background-color: var(--verde-fluo);
@@ -122,7 +118,7 @@
             line-height: 1.2;
         }
 
-        /* 3. DISCIPLINAS (Estructura Unificada) */
+        /* 3. DISCIPLINAS */
         .discipline-link {
             text-decoration: none;
             color: inherit;
@@ -132,24 +128,19 @@
 
         .discipline-grid {
             display: flex;
-            align-items: flex-start; /* Alineación superior estricta */
+            align-items: flex-start;
             gap: 15px;
         }
 
-        /* Píldora del título ahora DENTRO de col-left */
         .pill-title {
             display: inline-block;
             border: 1.5px solid var(--violeta);
             border-radius: 50px;
             padding: 5px 15px;
-            margin-bottom: 8px; /* Pegada al texto */
+            margin-bottom: 8px;
         }
 
-        .pill-title span {
-            font-family: var(--font-title);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-        }
+        .pill-title span { font-family: var(--font-title); font-size: 0.8rem; text-transform: uppercase; }
 
         .col-left { flex: 0 0 70%; font-size: 0.95rem; line-height: 1.5; }
         .col-right { flex: 0 0 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
@@ -165,14 +156,67 @@
 
         .mini-photo img { width: 100%; height: 100%; object-fit: cover; }
 
-        .arrow {
-            font-size: 2rem;
-            animation: bounceRight 1.5s infinite;
-        }
+        .arrow { font-size: 2rem; animation: bounceRight 1.5s infinite; }
 
         @keyframes bounceRight {
             0%, 100% { transform: translateX(0); }
             50% { transform: translateX(10px); }
+        }
+
+        /* 4. BLOQUE DE CONTACTO (FOOTER) */
+        .footer-contact {
+            margin-top: 40px;
+            padding-bottom: 60px;
+        }
+
+        .cta-title {
+            font-family: var(--font-title);
+            font-size: 2rem;
+            line-height: 1;
+            margin-bottom: 25px;
+            text-transform: uppercase;
+        }
+
+        .whatsapp-btn {
+            display: inline-block;
+            background-color: var(--verde-fluo);
+            color: var(--violeta);
+            padding: 20px 30px;
+            text-decoration: none;
+            font-family: var(--font-title);
+            font-weight: 800;
+            font-size: 1.1rem;
+            margin-bottom: 30px;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+
+        .whatsapp-btn:active {
+            transform: scale(0.96);
+            opacity: 0.9;
+        }
+
+        .secondary-links {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 50px;
+        }
+
+        .secondary-links a {
+            text-decoration: none;
+            color: var(--violeta);
+            font-weight: 700;
+            font-size: 0.9rem;
+            letter-spacing: 1px;
+        }
+
+        .credits {
+            font-size: 0.65rem;
+            font-weight: 500;
+            opacity: 0.8;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
         }
 
         /* =============================================
@@ -180,61 +224,29 @@
            ============================================= */
         @media (min-width: 1024px) {
             .container { padding: 80px 100px; }
-            
-            .main-name { 
-                font-size: 4rem; 
-                margin-bottom: 30px; 
-            }
-
+            .main-name { font-size: 4rem; }
             .photo-blob { width: 300px; height: 350px; }
-            
             .bio { font-size: 1.3rem; max-width: 600px; }
 
-            /* Grid Desktop: Alineación perfect nivelada */
-            .discipline-grid {
-                width: 100%;
-                justify-content: space-between;
-                align-items: flex-start; /* Asegura nivelación horizontal superior */
-                gap: 0;
-            }
-
-            .col-left {
-                flex: 0 0 45vw;
-                max-width: 45vw;
-                font-size: 1.25rem;
-            }
-
-            /* Píldoras Desktop: Más presencia */
-            .pill-title {
-                padding: 12px 35px;
-                border-width: 2px;
-                margin-bottom: 12px;
-            }
-
-            .pill-title span {
-                font-size: 1.4rem;
-                letter-spacing: 2px;
-            }
-
-            .col-right {
-                flex: 0 0 25vw; /* Foto detalle chica */
-                max-width: 25vw;
-                flex-direction: row;
-                justify-content: flex-end;
-                align-items: center;
-                gap: 40px;
-                /* Eliminamos cualquier margen superior para que la foto empiece al ras */
-                margin-top: 0; 
-            }
-
-            .mini-photo {
-                width: 100%; 
-                aspect-ratio: 16/11;
-                border-radius: 20px;
-            }
-
+            /* Disciplinas Desktop */
+            .discipline-grid { width: 100%; justify-content: space-between; align-items: flex-start; gap: 0; }
+            .col-left { flex: 0 0 45vw; max-width: 45vw; font-size: 1.25rem; }
+            .pill-title { padding: 12px 35px; border-width: 2px; margin-bottom: 12px; }
+            .pill-title span { font-size: 1.4rem; letter-spacing: 2px; }
+            .col-right { flex: 0 0 25vw; max-width: 25vw; flex-direction: row; justify-content: flex-end; align-items: center; gap: 40px; }
+            .mini-photo { width: 100%; aspect-ratio: 16/11; border-radius: 20px; }
             .arrow { font-size: 4rem; }
             .discipline-link { margin-bottom: 150px; }
+
+            /* Footer Desktop: Alineación 45vw */
+            .footer-contact {
+                max-width: 45vw;
+                margin-top: 100px;
+            }
+
+            .cta-title { font-size: 3rem; }
+            .whatsapp-btn { font-size: 1.4rem; padding: 25px 45px; }
+            .secondary-links { flex-direction: row; gap: 40px; }
         }
 
     </style>
@@ -272,7 +284,6 @@
 
         <!-- Disciplinas -->
         
-        <!-- BRANDING -->
         <a href="#branding" class="discipline-link">
             <div class="discipline-grid">
                 <div class="col-left">
@@ -288,7 +299,6 @@
             </div>
         </a>
 
-        <!-- PACKAGING -->
         <a href="#packaging" class="discipline-link">
             <div class="discipline-grid">
                 <div class="col-left">
@@ -304,7 +314,6 @@
             </div>
         </a>
 
-        <!-- WEB -->
         <a href="#web" class="discipline-link">
             <div class="discipline-grid">
                 <div class="col-left">
@@ -320,7 +329,6 @@
             </div>
         </a>
 
-        <!-- CONTENIDO -->
         <a href="#contenido" class="discipline-link">
             <div class="discipline-grid">
                 <div class="col-left">
@@ -336,9 +344,25 @@
             </div>
         </a>
 
-    </div>
+        <!-- BLOQUE FINAL DE CONTACTO -->
+        <footer class="footer-contact">
+            <h2 class="cta-title">¿TENÉS UN PROYECTO EN MENTE?</h2>
+            
+            <a href="https://wa.me/TUNUMERO" target="_blank" class="whatsapp-btn">
+                HAGÁMOSLO REAL POR WHATSAPP →
+            </a>
 
-    <div style="height: 100px;"></div>
+            <div class="secondary-links">
+                <a href="https://instagram.com/TUUSUARIO" target="_blank">INSTAGRAM</a>
+                <a href="mailto:tuemail@ejemplo.com">EMAIL</a>
+            </div>
+
+            <p class="credits">
+                © 2026 LUDMILA CORIA. BUENOS AIRES, ARGENTINA.
+            </p>
+        </footer>
+
+    </div>
 
 </body>
 </html>
