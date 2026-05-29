@@ -34,7 +34,7 @@
             text-align: left;
         }
 
-        /* 1. TEXTURA DE FONDO (LOREM IPSUM MASIVO) - SE MANTIENE 100% EN TODO DISPOSITIVO */
+        /* 1. TEXTURA DE FONDO */
         .bg-texture-container {
             position: fixed;
             top: 0;
@@ -70,15 +70,14 @@
         @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-        /* 2. COMPOSICIÓN INICIO - MOBILE FIRST */
+        /* 2. CONTENEDOR BASE */
         .container {
             padding: 40px 20px;
-            max-width: 500px;
             width: 100%;
-            margin-left: 0; /* Asegura alineación a la izquierda */
             position: relative;
         }
 
+        /* Estilos Inicio (Mobile First) */
         .photo-blob {
             width: 240px;
             height: 280px;
@@ -91,11 +90,6 @@
         }
 
         .photo-blob img { width: 100%; height: 100%; object-fit: cover; }
-
-        .photo-blob:active {
-            transform: scale(1.05) rotate(0deg);
-            border-radius: 40% 60% 70% 30% / 40% 70% 30% 60%;
-        }
 
         .main-name {
             font-family: var(--font-title);
@@ -111,6 +105,7 @@
             line-height: 1.4;
             font-weight: 500;
             margin-bottom: 60px;
+            max-width: 500px;
         }
 
         .tag {
@@ -120,16 +115,20 @@
             display: inline-block;
         }
 
-        /* 3. SECCIÓN DISCIPLINAS - MOBILE FIRST */
+        /* 3. DISCIPLINAS (Mobile First) */
         .discipline-link {
             text-decoration: none;
             color: inherit;
             display: block;
             margin-bottom: 50px;
-            transition: transform 0.3s ease;
         }
 
-        .discipline-link:active { transform: scale(0.97); }
+        .discipline-grid {
+            display: flex;
+            flex-direction: row; /* En mobile ya era row pero lo reforzamos */
+            align-items: flex-start;
+            gap: 15px;
+        }
 
         .pill-title {
             display: inline-block;
@@ -143,16 +142,9 @@
             font-family: var(--font-title);
             font-size: 0.9rem;
             text-transform: uppercase;
-            letter-spacing: 1px;
         }
 
-        .discipline-grid {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-        }
-
-        .col-left { flex: 0 0 70%; font-size: 1rem; line-height: 1.5; font-weight: 400; }
+        .col-left { flex: 0 0 70%; font-size: 1rem; line-height: 1.5; }
         .col-right { flex: 0 0 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
         .mini-photo {
@@ -168,7 +160,6 @@
 
         .arrow {
             font-size: 2rem;
-            font-weight: 300;
             animation: bounceRight 1.5s infinite;
         }
 
@@ -177,58 +168,73 @@
             50% { transform: translateX(10px); }
         }
 
-        .discipline-link::after {
-            content: ''; display: block; width: 40px; height: 1px;
-            background-color: var(--violeta); margin-top: 30px; opacity: 0.3;
-        }
-
         /* =============================================
-           REGLAS PARA ESCRITORIO (DESKTOP) 
+           REGLAS PARA ESCRITORIO (DESKTOP)
            ============================================= */
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
             .container {
-                max-width: 850px; /* Límite de ancho editorial */
-                width: 65vw;      /* Ocupa el 65% del ancho de pantalla */
-                padding: 80px 60px;
-                margin-left: 0;   /* Mantiene la alineación a la izquierda */
+                padding: 80px 100px; /* Más aire en los bordes */
             }
 
             .main-name {
-                font-size: 6rem; /* Nombre mucho más imponente */
-                margin-bottom: 40px;
+                font-size: 7rem;
+                max-width: 800px;
             }
 
             .photo-blob {
-                width: 320px;   /* Foto más grande en desktop */
-                height: 380px;
-                margin-bottom: 50px;
+                width: 350px;
+                height: 400px;
             }
 
             .bio {
-                font-size: 1.4rem; /* Texto de bio más legible */
-                max-width: 80%;
-                margin-bottom: 100px;
+                font-size: 1.5rem;
+                max-width: 600px;
             }
 
-            /* Ajuste de columnas en disciplinas */
+            /* LÓGICA DE EXTREMOS OPUESTOS */
+            .discipline-link {
+                width: 100%;
+                margin-bottom: 120px;
+            }
+
             .discipline-grid {
-                gap: 40px; /* Más espacio entre texto y foto */
+                width: 100%;
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between; /* Empuja los elementos a los bordes */
+                align-items: center; /* Alineación vertical al centro para elegancia */
+                gap: 0; /* Quitamos el gap fijo para que space-between mande */
             }
 
             .col-left {
-                font-size: 1.2rem; /* Cuerpo de texto más cómodo */
+                flex: 0 0 45vw; /* Ocupa el 45% del ancho de pantalla */
+                max-width: 45vw;
+                font-size: 1.3rem;
+                line-height: 1.6;
+            }
+
+            .col-right {
+                flex: 0 0 35vw; /* La foto ocupa el 35% del ancho */
+                max-width: 35vw;
+                flex-direction: row; /* Ponemos la foto y la flecha una al lado de la otra */
+                justify-content: flex-end;
+                align-items: center;
+                gap: 30px;
             }
 
             .mini-photo {
-                max-width: 180px; /* Evita que la foto detalle crezca demasiado */
+                width: 100%; /* Toma el ancho del contenedor 35vw */
+                height: auto;
+                aspect-ratio: 16/10; /* Un poco más apaisada para desktop */
+                border-radius: 20px;
             }
 
             .pill-title span {
-                font-size: 1.1rem; /* Píldoras más claras */
+                font-size: 1.2rem;
             }
-            
-            .discipline-link {
-                margin-bottom: 80px; /* Más aire entre secciones */
+
+            .arrow {
+                font-size: 4rem; /* Flecha más imponente */
             }
         }
 
@@ -238,21 +244,11 @@
 
     <!-- 1. Textura de Fondo -->
     <div class="bg-texture-container">
-        <div class="marquee-line">
-            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
-        </div>
-        <div class="marquee-line reverse">
-            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
-        </div>
-        <div class="marquee-line">
-            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
-        </div>
-        <div class="marquee-line reverse">
-            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
-        </div>
-        <div class="marquee-line">
-            <div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div>
-        </div>
+        <div class="marquee-line"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
+        <div class="marquee-line reverse"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
+        <div class="marquee-line"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
+        <div class="marquee-line reverse"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
+        <div class="marquee-line"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
     </div>
 
     <div class="container">
@@ -260,7 +256,7 @@
         <!-- 2. Inicio -->
         <header>
             <div class="photo-blob">
-                <img src="https://via.placeholder.com/400x500/5D26C1/FFFFFF?text=LUDMILA" alt="Ludmila Coria">
+                <img src="https://via.placeholder.com/500x600/5D26C1/FFFFFF?text=LUDMILA" alt="Ludmila Coria">
             </div>
             <h1 class="main-name">LUDMILA<br>CORIA</h1>
             <p class="bio">
@@ -279,7 +275,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=300" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=800" alt="Branding Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
@@ -294,7 +290,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=300" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=800" alt="Packaging Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
@@ -309,7 +305,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=300" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?auto=format&fit=crop&q=80&w=800" alt="Web Design">
                     </div>
                     <div class="arrow">→</div>
                 </div>
@@ -324,7 +320,7 @@
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
-                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=300" alt="Work">
+                        <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?auto=format&fit=crop&q=80&w=800" alt="Social Media Work">
                     </div>
                     <div class="arrow">→</div>
                 </div>
