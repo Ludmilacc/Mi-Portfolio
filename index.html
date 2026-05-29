@@ -122,36 +122,36 @@
             line-height: 1.2;
         }
 
-        /* 3. DISCIPLINAS (Mobile First) */
+        /* 3. DISCIPLINAS (Estructura Unificada) */
         .discipline-link {
             text-decoration: none;
             color: inherit;
             display: block;
-            margin-bottom: 50px;
-        }
-
-        /* AJUSTE DRÁSTICO: Títulos pegados al texto */
-        .pill-title {
-            display: inline-block;
-            border: 1.5px solid var(--violeta);
-            border-radius: 50px;
-            padding: 6px 20px;
-            margin-bottom: 4px; /* Espacio mínimo para conexión inmediata */
-        }
-
-        .pill-title span {
-            font-family: var(--font-title);
-            font-size: 0.9rem;
-            text-transform: uppercase;
+            margin-bottom: 60px;
         }
 
         .discipline-grid {
             display: flex;
-            align-items: flex-start;
+            align-items: flex-start; /* Alineación superior estricta */
             gap: 15px;
         }
 
-        .col-left { flex: 0 0 70%; font-size: 1rem; line-height: 1.5; }
+        /* Píldora del título ahora DENTRO de col-left */
+        .pill-title {
+            display: inline-block;
+            border: 1.5px solid var(--violeta);
+            border-radius: 50px;
+            padding: 5px 15px;
+            margin-bottom: 8px; /* Pegada al texto */
+        }
+
+        .pill-title span {
+            font-family: var(--font-title);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+        }
+
+        .col-left { flex: 0 0 70%; font-size: 0.95rem; line-height: 1.5; }
         .col-right { flex: 0 0 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
 
         .mini-photo {
@@ -190,22 +190,11 @@
             
             .bio { font-size: 1.3rem; max-width: 600px; }
 
-            /* Ajuste de Píldoras Desktop: Pegadas al texto */
-            .pill-title {
-                padding: 12px 35px;
-                border-width: 2px;
-                margin-bottom: 6px; /* Reducción de aire en desktop */
-            }
-
-            .pill-title span {
-                font-size: 1.4rem;
-                letter-spacing: 2px;
-            }
-
+            /* Grid Desktop: Alineación perfect nivelada */
             .discipline-grid {
                 width: 100%;
                 justify-content: space-between;
-                align-items: center;
+                align-items: flex-start; /* Asegura nivelación horizontal superior */
                 gap: 0;
             }
 
@@ -215,13 +204,27 @@
                 font-size: 1.25rem;
             }
 
+            /* Píldoras Desktop: Más presencia */
+            .pill-title {
+                padding: 12px 35px;
+                border-width: 2px;
+                margin-bottom: 12px;
+            }
+
+            .pill-title span {
+                font-size: 1.4rem;
+                letter-spacing: 2px;
+            }
+
             .col-right {
-                flex: 0 0 25vw;
+                flex: 0 0 25vw; /* Foto detalle chica */
                 max-width: 25vw;
                 flex-direction: row;
                 justify-content: flex-end;
                 align-items: center;
                 gap: 40px;
+                /* Eliminamos cualquier margen superior para que la foto empiece al ras */
+                margin-top: 0; 
             }
 
             .mini-photo {
@@ -231,7 +234,7 @@
             }
 
             .arrow { font-size: 4rem; }
-            .discipline-link { margin-bottom: 120px; }
+            .discipline-link { margin-bottom: 150px; }
         }
 
     </style>
@@ -271,10 +274,10 @@
         
         <!-- BRANDING -->
         <a href="#branding" class="discipline-link">
-            <div class="pill-title"><span>BRANDING</span></div>
             <div class="discipline-grid">
                 <div class="col-left">
-                    No sé diseñar desde afuera. Para crear la identidad de una marca necesito compenetrarme: investigar el producto, probarlo y vibrar con el proyecto. Si no me ensucio las manos, el resultado no es real.
+                    <div class="pill-title"><span>BRANDING</span></div>
+                    <p>No sé diseñar desde afuera. Para crear la identidad de una marca necesito compenetrarme: investigar el producto, probarlo y vibrar con el proyecto. Si no me ensucio las manos, el resultado no es real.</p>
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
@@ -287,10 +290,10 @@
 
         <!-- PACKAGING -->
         <a href="#packaging" class="discipline-link">
-            <div class="pill-title"><span>PACKAGING</span></div>
             <div class="discipline-grid">
                 <div class="col-left">
-                    Me apasiona el diseño de empaques y productos tangibles. Creo objetos que la gente puede tocar y experimentar en el mundo real, fusionando estética con funcionalidad técnica.
+                    <div class="pill-title"><span>PACKAGING</span></div>
+                    <p>Me apasiona el diseño de empaques y productos tangibles. Creo objetos que la gente puede tocar y experimentar en el mundo real, fusionando estética con funcionalidad técnica.</p>
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
@@ -303,10 +306,10 @@
 
         <!-- WEB -->
         <a href="#web" class="discipline-link">
-            <div class="pill-title"><span>DISEÑO WEB</span></div>
             <div class="discipline-grid">
                 <div class="col-left">
-                    Enfoque estratégico UX/UI. Mi formación me permite diseñar interfaces pensadas para que navegar en el celular sea una experiencia fluida, cómoda y visualmente impactante.
+                    <div class="pill-title"><span>DISEÑO WEB</span></div>
+                    <p>Enfoque estratégico UX/UI. Mi formación me permite diseñar interfaces pensadas para que navegar en el celular sea una experiencia fluida, cómoda y visualmente impactante.</p>
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
@@ -319,10 +322,10 @@
 
         <!-- CONTENIDO -->
         <a href="#contenido" class="discipline-link">
-            <div class="pill-title"><span>CONTENIDO PARA REDES</span></div>
             <div class="discipline-grid">
                 <div class="col-left">
-                    Gracias a estudiar diseño tengo un criterio estético y estratégico real para redes sociales. No subo cosas por subir; cada pieza tiene una identidad y un objetivo claro.
+                    <div class="pill-title"><span>CONTENIDO PARA REDES</span></div>
+                    <p>Gracias a estudiar diseño tengo un criterio estético y estratégico real para redes sociales. No subo cosas por subir; cada pieza tiene una identidad y un objetivo claro.</p>
                 </div>
                 <div class="col-right">
                     <div class="mini-photo">
