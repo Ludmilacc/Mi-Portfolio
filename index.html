@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Ludmila Coria | Portfolio Editorial</title>
+    <title>Ludmila Coria | Portfolio</title>
     
     <!-- Tipografías -->
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700&family=Space+Grotesk:wght@800&display=swap" rel="stylesheet">
@@ -77,7 +77,7 @@
             position: relative;
         }
 
-        /* Estilos Inicio (Mobile First) */
+        /* Estilos Inicio (Mobile First - NO TOCAR) */
         .photo-blob {
             width: 240px;
             height: 280px;
@@ -115,7 +115,7 @@
             display: inline-block;
         }
 
-        /* 3. DISCIPLINAS (Mobile First - 2 col alineadas) */
+        /* 3. DISCIPLINAS (Mobile First - NO TOCAR) */
         .discipline-link {
             text-decoration: none;
             color: inherit;
@@ -168,50 +168,76 @@
         }
 
         /* =============================================
-           AJUSTES EXCLUSIVOS DESKTOP (1024px+)
+           AJUSTES CORREGIDOS DESKTOP (1024px+)
            ============================================= */
         @media (min-width: 1024px) {
             .container {
                 padding: 80px 100px;
             }
 
-            .main-name { font-size: 7rem; }
-            .photo-blob { width: 320px; height: 380px; }
-            .bio { font-size: 1.4rem; max-width: 600px; }
+            /* 1. NOMBRE ACHICADO A ESCALA ELEGANTE */
+            .main-name { 
+                font-size: 4rem; /* Reducido de 7rem para mayor sofisticación */
+                margin-bottom: 30px;
+            }
 
-            /* Grid de Disciplinas: Extremos Opuestos y Foto Chica */
+            .photo-blob { 
+                width: 300px; 
+                height: 350px; 
+            }
+
+            .bio { 
+                font-size: 1.3rem; 
+                max-width: 550px; 
+            }
+
+            /* 2. PÍLDORAS CON MÁS PRESENCIA Y AIRE */
+            .pill-title {
+                padding: 12px 35px; /* Más espacio interno */
+                border-width: 2px;
+                margin-bottom: 25px;
+            }
+
+            .pill-title span {
+                font-size: 1.4rem; /* Texto más grande y legible */
+                letter-spacing: 2px;
+            }
+
+            /* 3. LAYOUT DE EXTREMOS MANTENIDO */
             .discipline-grid {
                 width: 100%;
-                justify-content: space-between; /* Texto a la izq, Foto a la der */
+                justify-content: space-between; /* Extremos opuestos */
                 align-items: center;
                 gap: 0;
             }
 
             .col-left {
-                flex: 0 0 45vw; /* Texto contenido al 45% */
+                flex: 0 0 45vw; /* Texto a la izquierda (ancho controlado) */
                 max-width: 45vw;
                 font-size: 1.25rem;
             }
 
             .col-right {
-                flex: 0 0 25vw; /* FOTO ACHICADA AL 25% */
+                flex: 0 0 25vw; /* Foto chica al 25% */
                 max-width: 25vw;
-                flex-direction: row; /* Foto y flecha en línea */
-                justify-content: flex-end;
+                flex-direction: row;
+                justify-content: flex-end; /* Pegado a la derecha */
                 align-items: center;
-                gap: 30px;
+                gap: 40px;
             }
 
             .mini-photo {
                 width: 100%; 
-                aspect-ratio: 4/3; /* Formato más elegante para desktop */
+                aspect-ratio: 16/11; /* Formato elegante */
                 border-radius: 20px;
             }
 
-            .arrow { font-size: 3.5rem; }
+            .arrow { 
+                font-size: 4rem; 
+            }
             
             .discipline-link {
-                margin-bottom: 100px;
+                margin-bottom: 120px;
             }
         }
 
@@ -219,7 +245,7 @@
 </head>
 <body>
 
-    <!-- 1. Textura de Fondo -->
+    <!-- Textura de Fondo -->
     <div class="bg-texture-container">
         <div class="marquee-line"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
         <div class="marquee-line reverse"><div class="marquee-content">LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM LOREM IPSUM</div></div>
@@ -230,7 +256,7 @@
 
     <div class="container">
         
-        <!-- 2. Inicio -->
+        <!-- Inicio -->
         <header>
             <div class="photo-blob">
                 <img src="https://via.placeholder.com/500x600/5D26C1/FFFFFF?text=LUDMILA" alt="Ludmila Coria">
@@ -242,7 +268,7 @@
             </p>
         </header>
 
-        <!-- 3. Bloques de Disciplinas -->
+        <!-- Disciplinas -->
         
         <!-- BRANDING -->
         <a href="#branding" class="discipline-link">
