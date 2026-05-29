@@ -34,7 +34,7 @@
             text-align: left;
         }
 
-        /* 1. TEXTURA DE FONDO */
+        /* 1. TEXTURA DE FONDO (MARQUESINA) */
         .bg-texture-container {
             position: fixed;
             top: 0;
@@ -70,14 +70,14 @@
         @keyframes scroll-left { from { transform: translateX(0); } to { transform: translateX(-50%); } }
         @keyframes scroll-right { from { transform: translateX(-50%); } to { transform: translateX(0); } }
 
-        /* 2. CONTENEDOR BASE */
+        /* 2. CONTENEDOR PRINCIPAL */
         .container {
             padding: 40px 20px;
             width: 100%;
             position: relative;
         }
 
-        /* Estilos Inicio (Mobile First - NO TOCAR) */
+        /* Inicio (Mobile First) */
         .photo-blob {
             width: 240px;
             height: 280px;
@@ -100,12 +100,19 @@
             letter-spacing: -2px;
         }
 
+        /* BIO - Arreglo de Comas Colgadas */
         .bio {
             font-size: 1.1rem;
-            line-height: 1.4;
+            line-height: 1.6;
             font-weight: 500;
             margin-bottom: 60px;
             max-width: 500px;
+        }
+
+        /* Técnica para evitar comas sueltas */
+        .no-break {
+            white-space: nowrap;
+            display: inline-block;
         }
 
         .tag {
@@ -113,9 +120,10 @@
             padding: 0 5px;
             font-weight: 700;
             display: inline-block;
+            line-height: 1.2;
         }
 
-        /* 3. DISCIPLINAS (Mobile First - NO TOCAR) */
+        /* 3. DISCIPLINAS (Mobile First) */
         .discipline-link {
             text-decoration: none;
             color: inherit;
@@ -123,12 +131,13 @@
             margin-bottom: 50px;
         }
 
+        /* AJUSTE: Títulos más cerca del texto */
         .pill-title {
             display: inline-block;
             border: 1.5px solid var(--violeta);
             border-radius: 50px;
             padding: 6px 20px;
-            margin-bottom: 20px;
+            margin-bottom: 10px; /* Reducido para mayor cercanía visual */
         }
 
         .pill-title span {
@@ -168,77 +177,62 @@
         }
 
         /* =============================================
-           AJUSTES CORREGIDOS DESKTOP (1024px+)
+           AJUSTES DESKTOP (1024px+)
            ============================================= */
         @media (min-width: 1024px) {
-            .container {
-                padding: 80px 100px;
-            }
-
-            /* 1. NOMBRE ACHICADO A ESCALA ELEGANTE */
+            .container { padding: 80px 100px; }
+            
             .main-name { 
-                font-size: 4rem; /* Reducido de 7rem para mayor sofisticación */
-                margin-bottom: 30px;
+                font-size: 4rem; 
+                margin-bottom: 30px; 
             }
 
-            .photo-blob { 
-                width: 300px; 
-                height: 350px; 
-            }
+            .photo-blob { width: 300px; height: 350px; }
+            
+            .bio { font-size: 1.3rem; max-width: 600px; }
 
-            .bio { 
-                font-size: 1.3rem; 
-                max-width: 550px; 
-            }
-
-            /* 2. PÍLDORAS CON MÁS PRESENCIA Y AIRE */
+            /* Ajuste de Píldoras en Desktop */
             .pill-title {
-                padding: 12px 35px; /* Más espacio interno */
+                padding: 12px 35px;
                 border-width: 2px;
-                margin-bottom: 25px;
+                margin-bottom: 12px; /* Reducido también en desktop */
             }
 
             .pill-title span {
-                font-size: 1.4rem; /* Texto más grande y legible */
+                font-size: 1.4rem;
                 letter-spacing: 2px;
             }
 
-            /* 3. LAYOUT DE EXTREMOS MANTENIDO */
             .discipline-grid {
                 width: 100%;
-                justify-content: space-between; /* Extremos opuestos */
+                justify-content: space-between;
                 align-items: center;
                 gap: 0;
             }
 
             .col-left {
-                flex: 0 0 45vw; /* Texto a la izquierda (ancho controlado) */
+                flex: 0 0 45vw;
                 max-width: 45vw;
                 font-size: 1.25rem;
             }
 
             .col-right {
-                flex: 0 0 25vw; /* Foto chica al 25% */
+                flex: 0 0 25vw;
                 max-width: 25vw;
                 flex-direction: row;
-                justify-content: flex-end; /* Pegado a la derecha */
+                justify-content: flex-end;
                 align-items: center;
                 gap: 40px;
             }
 
             .mini-photo {
                 width: 100%; 
-                aspect-ratio: 16/11; /* Formato elegante */
+                aspect-ratio: 16/11;
                 border-radius: 20px;
             }
 
-            .arrow { 
-                font-size: 4rem; 
-            }
-            
-            .discipline-link {
-                margin-bottom: 120px;
-            }
+            .arrow { font-size: 4rem; }
+            .discipline-link { margin-bottom: 120px; }
         }
 
     </style>
@@ -262,9 +256,15 @@
                 <img src="https://via.placeholder.com/500x600/5D26C1/FFFFFF?text=LUDMILA" alt="Ludmila Coria">
             </div>
             <h1 class="main-name">LUDMILA<br>CORIA</h1>
+            
             <p class="bio">
-                Estudiante de Diseño Gráfico, dedicada al <span class="tag">Diseño Web</span>, 
-                <span class="tag">Branding</span> y <span class="tag">Creación de Contenido</span> estratégico.
+                Estudiante de Diseño Gráfico, dedicada al 
+                <span class="no-break"><span class="tag">Diseño Web</span>,</span> 
+                <span class="no-break"><span class="tag">Branding</span></span> y 
+                <span class="no-break"><span class="tag">Creación de Contenido</span></span> estratégico. 
+                Impulso proyectos desde 
+                <span class="no-break"><span class="tag">Mila Creative</span>,</span> 
+                mi propio estudio integral de diseño y redes.
             </p>
         </header>
 
